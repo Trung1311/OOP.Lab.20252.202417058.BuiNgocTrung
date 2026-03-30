@@ -21,7 +21,6 @@ public class BasicCalculator {
         System.out.println("Hieu : " + difference);
         System.out.println("Tich : " + product);
 
-        // 4. Kiểm tra mẫu số trước khi tính Thương (Quotient)
         if (num2 == 0) {
             System.out.println(" Khong the chia cho 0!");
         } else {
