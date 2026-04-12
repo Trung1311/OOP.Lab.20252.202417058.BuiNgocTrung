@@ -1,4 +1,4 @@
-
+## 2.2.6 phần 1
 import java.util.Scanner;
 
 public class linear_equation {

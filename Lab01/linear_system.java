@@ -1,4 +1,4 @@
-
+## 2.2.6 phần 2
 import java.util.Scanner;
 public class linear_system {
     public static void main(String[] args) {

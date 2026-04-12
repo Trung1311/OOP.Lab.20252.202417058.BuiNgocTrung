@@ -1,4 +1,4 @@
-# 6.2 phần 3
+# 2.2.6 phần 3
 import java.util.Scanner;
 
 public class quad_equation {
