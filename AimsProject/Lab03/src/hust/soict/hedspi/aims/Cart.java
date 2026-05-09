@@ -3,22 +3,37 @@ package hust.soict.hedspi.aims;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cart {
-    private final List<DigitalVideoDisc> itemsOrdered = new ArrayList<>();
+import hust.soict.hedspi.aims.media.Media;
 
-    public void addDigitalVideoDisc(DigitalVideoDisc disc) {
-        if (disc == null) {
-            System.out.println("The disc is null");
+public class Cart {
+    private final List<Media> itemsOrdered = new ArrayList<>();
+
+    public void addMedia(Media media) {
+        if (media == null) {
+            System.out.println("The media is null");
             return;
         }
-        itemsOrdered.add(disc);
-        System.out.println("The disc has been added");
+        itemsOrdered.add(media);
+        System.out.println("The media has been added");
+    }
+
+    public void removeMedia(Media media) {
+        if (media == null) {
+            System.out.println("The media is null");
+            return;
+        }
+
+        if (itemsOrdered.remove(media)) {
+            System.out.println("The media has been removed");
+        } else {
+            System.out.println("The media was not found");
+        }
     }
 
     public float totalCost() {
         float sum = 0;
-        for (DigitalVideoDisc dvd : itemsOrdered) {
-            sum += dvd.getCost();
+        for (Media media : itemsOrdered) {
+            sum += media.getCost();
         }
         return sum;
     }
@@ -35,27 +50,30 @@ public class Cart {
 
     public void searchById(int id) {
         boolean found = false;
-        for (DigitalVideoDisc dvd : itemsOrdered) {
-            if (dvd.getId() == id) {
-                System.out.println(dvd);
+        for (Media media : itemsOrdered) {
+            if (media.getId() == id) {
+                System.out.println(media);
                 found = true;
             }
         }
-        if (!found) {
-            System.out.println("No DVD found with id: " + id);
+        if (found) {
+            return;
         }
+        System.out.println("No media found with id: " + id);
     }
 
     public void searchByTitle(String title) {
         boolean found = false;
-        for (DigitalVideoDisc dvd : itemsOrdered) {
-            if (dvd.isMatch(title)) {
-                System.out.println(dvd);
+        for (Media media : itemsOrdered) {
+            String mediaTitle = media.getTitle();
+            if (mediaTitle != null && title != null && mediaTitle.toLowerCase().contains(title.toLowerCase())) {
+                System.out.println(media);
                 found = true;
             }
         }
-        if (!found) {
-            System.out.println("No DVD found with title: " + title);
+        if (found) {
+            return;
         }
+        System.out.println("No media found with title: " + title);
     }
 }
