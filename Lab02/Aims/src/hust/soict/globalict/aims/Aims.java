@@ -52,5 +52,16 @@ public class Aims {
 
         Track track3 = new Track("Thriller", 358);
         System.out.println("track1 equals track3: " + track1.equals(track3));
+     // Section 16 - Polymorphism với toString()
+        System.out.println("\n--- Polymorphism with toString() ---");
+        java.util.List<hust.soict.globalict.aims.media.Media> mediaList = 
+            new java.util.ArrayList<>();
+        mediaList.add(dvd1);
+        mediaList.add(book1);
+        mediaList.add(cd1);
+
+        for (hust.soict.globalict.aims.media.Media m : mediaList) {
+            System.out.println(m.toString());
+        }
     }
 }
