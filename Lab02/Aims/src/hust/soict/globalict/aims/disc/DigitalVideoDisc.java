@@ -1,83 +1,60 @@
 package hust.soict.globalict.aims.disc;
 
 public class DigitalVideoDisc {
-	private static int nbDigitalVideoDiscs = 0;
-	private final int id;
-	private String title;
-	private String category;
-	private String director;
-	private int lenghth;
-	private float cost;
-
-	private static int generateId() {
-		nbDigitalVideoDiscs++;
-		return nbDigitalVideoDiscs;
+	public boolean isMatch(String title) {
+	    return this.title.toLowerCase().contains(title.toLowerCase());
 	}
-
-	public int getId() {
-		return id;
-	}
-
-	public static int getNbDigitalVideoDiscs() {
-		return nbDigitalVideoDiscs;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getCategory() {
-		return category;
-	}
-	public void setCategory(String category) {
-		this.category = category;
-	}
-	public String getDirector() {
-		return director;
-	}
-	public void setDirector(String director) {
-		this.director = director;
-	}
-	public int getLenghth() {
-		return lenghth;
-	}
-	public void setLenghth(int lenghth) {
-		this.lenghth = lenghth;
-	}
-	public float getCost() {
-		return cost;
-	}
-	public void setCost(float cost) {
-		this.cost = cost;
-	}
-	public DigitalVideoDisc(String title) {
-	    this.id = generateId();
-	    this.title = title;
-	}
-	public DigitalVideoDisc(String category, String title, float cost) {
-	    this.id = generateId();
-	    this.category = category;
-	    this.title = title;
-	    this.cost = cost;
-	}
-	public DigitalVideoDisc(String director, String category, String title, float cost) {
-	    this.id = generateId();
-	    this.director = director;
-	    this.category = category;
-	    this.title = title;
-	    this.cost = cost;
-	}
-	public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
-	    this.id = generateId();
-	    this.title = title;
-	    this.category = category;
-	    this.director = director;
-	    this.lenghth = length;
-	    this.cost = cost;
-	}
-
-
-
-
+    private static int nbDigitalVideoDiscs = 0;
+    
+    private int id;
+    private String title;
+    private String category;
+    private String director;
+    private int length;
+    private float cost;
+    
+    // Constructor chỉ có title
+    public DigitalVideoDisc(String title) {
+        this.title = title;
+        nbDigitalVideoDiscs++;
+        this.id = nbDigitalVideoDiscs;
+    }
+    
+    // Constructor có category và cost
+    public DigitalVideoDisc(String title, String category, float cost) {
+        this.title = title;
+        this.category = category;
+        this.cost = cost;
+        nbDigitalVideoDiscs++;
+        this.id = nbDigitalVideoDiscs;
+    }
+    
+    // Constructor đầy đủ
+    public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
+        this.title = title;
+        this.category = category;
+        this.director = director;
+        this.length = length;
+        this.cost = cost;
+        nbDigitalVideoDiscs++;
+        this.id = nbDigitalVideoDiscs;
+    }
+    
+    // Getters
+    public int getId() { return id; }
+    public String getTitle() { return title; }
+    public String getCategory() { return category; }
+    public String getDirector() { return director; }
+    public int getLength() { return length; }
+    public float getCost() { return cost; }
+    
+    // Setters
+    public void setTitle(String title) { this.title = title; }
+    
+    public String toString() {
+        return "DVD - " + title + " - " + category 
+             + " - " + director + " - " + length 
+             + ": " + cost + " $";
+    }
+    
 }
