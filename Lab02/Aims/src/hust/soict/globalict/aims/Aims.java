@@ -63,5 +63,17 @@ public class Aims {
         for (hust.soict.globalict.aims.media.Media m : mediaList) {
             System.out.println(m.toString());
         }
+     // Section 17 - Sort
+        System.out.println("\n--- Sort by Title ---");
+        java.util.Collections.sort(mediaList, Media.COMPARE_BY_TITLE_COST);
+        for (Media m : mediaList) {
+            System.out.println(m.toString());
+        }
+
+        System.out.println("\n--- Sort by Cost ---");
+        java.util.Collections.sort(mediaList, Media.COMPARE_BY_COST_TITLE);
+        for (Media m : mediaList) {
+            System.out.println(m.toString());
+        }
     }
 }
