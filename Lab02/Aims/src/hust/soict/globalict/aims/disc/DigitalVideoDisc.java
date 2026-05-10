@@ -1,6 +1,9 @@
 package hust.soict.globalict.aims.disc;
 
 public class DigitalVideoDisc {
+	public boolean isMatch(String title) {
+	    return this.title.toLowerCase().contains(title.toLowerCase());
+	}
     private static int nbDigitalVideoDiscs = 0;
     
     private int id;
@@ -53,4 +56,5 @@ public class DigitalVideoDisc {
              + " - " + director + " - " + length 
              + ": " + cost + " $";
     }
+    
 }
