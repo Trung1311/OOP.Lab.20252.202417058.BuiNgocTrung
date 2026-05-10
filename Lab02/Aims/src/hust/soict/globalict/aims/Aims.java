@@ -44,5 +44,13 @@ public class Aims {
         System.out.println("\n--- Play media ---");
         dvd1.play();
         cd1.play();
+     // Test equals
+        System.out.println("\n--- Test equals ---");
+        DigitalVideoDisc dvd2 = new DigitalVideoDisc(
+            "The Lion King", "Animation", "Roger Allers", 87, 19.95f);
+        System.out.println("dvd1 equals dvd2: " + dvd1.equals(dvd2));
+
+        Track track3 = new Track("Thriller", 358);
+        System.out.println("track1 equals track3: " + track1.equals(track3));
     }
 }

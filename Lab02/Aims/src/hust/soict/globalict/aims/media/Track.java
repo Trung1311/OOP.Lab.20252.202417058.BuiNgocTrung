@@ -23,4 +23,11 @@ public class Track implements Playable  {
             System.out.println("Cannot play track: " + this.title);
         }
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Track)) return false;
+        Track other = (Track) obj;
+        return this.title.equals(other.title) && this.length == other.length;
+    }
 }
