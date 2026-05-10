@@ -1,60 +1,36 @@
 package hust.soict.globalict.aims.disc;
 
-public class DigitalVideoDisc {
-	public boolean isMatch(String title) {
-	    return this.title.toLowerCase().contains(title.toLowerCase());
-	}
-    private static int nbDigitalVideoDiscs = 0;
+import hust.soict.globalict.aims.media.Disc;
+import hust.soict.globalict.aims.media.Playable;
+public class DigitalVideoDisc extends Disc implements Playable  {
     
-    private int id;
-    private String title;
-    private String category;
-    private String director;
-    private int length;
-    private float cost;
-    
-    // Constructor chỉ có title
     public DigitalVideoDisc(String title) {
-        this.title = title;
-        nbDigitalVideoDiscs++;
-        this.id = nbDigitalVideoDiscs;
+        super(title, null, null, 0, 0);
     }
     
-    // Constructor có category và cost
     public DigitalVideoDisc(String title, String category, float cost) {
-        this.title = title;
-        this.category = category;
-        this.cost = cost;
-        nbDigitalVideoDiscs++;
-        this.id = nbDigitalVideoDiscs;
+        super(title, category, null, 0, cost);
     }
     
-    // Constructor đầy đủ
     public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
-        this.title = title;
-        this.category = category;
-        this.director = director;
-        this.length = length;
-        this.cost = cost;
-        nbDigitalVideoDiscs++;
-        this.id = nbDigitalVideoDiscs;
+        super(title, category, director, length, cost);
     }
     
-    // Getters
-    public int getId() { return id; }
-    public String getTitle() { return title; }
-    public String getCategory() { return category; }
-    public String getDirector() { return director; }
-    public int getLength() { return length; }
-    public float getCost() { return cost; }
-    
-    // Setters
-    public void setTitle(String title) { this.title = title; }
+    public boolean isMatch(String title) {
+        return this.getTitle().toLowerCase().contains(title.toLowerCase());
+    }
     
     public String toString() {
-        return "DVD - " + title + " - " + category 
-             + " - " + director + " - " + length 
-             + ": " + cost + " $";
+        return "DVD - " + getTitle() + " - " + getCategory()
+             + " - " + getDirector() + " - " + getLength()
+             + ": " + getCost() + " $";
     }
-    
+    public void play() {
+        if (this.getLength() > 0) {
+            System.out.println("Playing DVD: " + this.getTitle());
+            System.out.println("DVD length: " + this.getLength());
+        } else {
+            System.out.println("Cannot play DVD: " + this.getTitle());
+        }
+    }
 }
