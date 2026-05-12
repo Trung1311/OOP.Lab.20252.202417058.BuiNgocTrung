@@ -1,0 +1,45 @@
+Lab 04 - GUI Programming with Swing
+Student: Bui Ngoc Trung - 202417058
+
+=== Section 1.3: Compare Swing and AWT elements ===
+
+1. Top-level containers:
+   - AWT: Frame (extends Frame directly)
+   - Swing: JFrame (extends JFrame directly)
+   Swing's JFrame adds built-in support for setDefaultCloseOperation(),
+   whereas AWT's Frame requires a WindowListener to handle close events.
+
+2. Component class names:
+   - AWT: TextField, Label, Button, Checkbox, List, etc.
+   - Swing: JTextField, JLabel, JButton, JCheckBox, JList, etc.
+   Swing components all start with the letter "J". They are lightweight
+   components (drawn by Java, not the OS), while AWT components are
+   heavyweight (drawn by the native OS).
+
+3. Container hierarchy (content pane):
+   - AWT: Components are added directly to the Frame container.
+     Example: add(new Label("text"));
+   - Swing: JComponents must be added to the content pane of JFrame,
+     not directly to the JFrame itself.
+     Example: getContentPane().add(new JLabel("text"));
+   This is because JComponents are lightweight and cannot be mixed
+   directly with the heavyweight Frame container reliably.
+
+4. Event handling:
+   - Both AWT and Swing use the same event-handling model from the
+     java.awt.event package (ActionListener, ActionEvent, etc.).
+   - There is no difference in event handling between AWTAccumulator
+     and SwingAccumulator; both use ActionListener with actionPerformed().
+
+5. Appearance:
+   - AWT renders using the native OS widgets, so appearance varies
+     between Windows, macOS, and Linux.
+   - Swing renders all components in Java (Pluggable Look and Feel),
+     so it looks the same on all platforms, and supports custom themes
+     (Metal, Nimbus, Windows, etc.).
+   - Swing generally provides a more polished and consistent UI.
+
+6. Performance:
+   - AWT is generally faster for simple UIs since it delegates to native OS.
+   - Swing is more flexible and feature-rich but can be slightly slower
+     due to software rendering.
