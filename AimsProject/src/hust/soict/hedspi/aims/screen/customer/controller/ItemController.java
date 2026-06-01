@@ -3,6 +3,7 @@ package hust.soict.hedspi.aims.screen.customer.controller;
 import hust.soict.hedspi.aims.cart.Cart;
 import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.media.Playable;
+import hust.soict.hedspi.aims.exception.LimitExceededException;
 import hust.soict.hedspi.aims.exception.PlayerException;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -51,8 +52,16 @@ public class ItemController {
     @FXML
     void btnAddToCartClicked(ActionEvent event) {
         if (cart != null) {
-            cart.addMedia(media);
-            System.out.println("Added " + media.getTitle() + " to cart.");
+            try {
+                cart.addMedia(media);
+                System.out.println("Added " + media.getTitle() + " to cart.");
+            } catch (LimitExceededException e) {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Cart Error");
+                alert.setHeaderText("Could not add item to cart");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+            }
         }
     }
 

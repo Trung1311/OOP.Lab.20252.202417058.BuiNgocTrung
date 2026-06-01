@@ -6,7 +6,8 @@ Section 14: Exception Hierarchical Tree
 java.lang.Object
   └── java.lang.Throwable
         └── java.lang.Exception
-              └── hust.soict.hedspi.aims.exception.PlayerException
+              ├── hust.soict.hedspi.aims.exception.PlayerException
+              └── hust.soict.hedspi.aims.exception.LimitExceededException
 
 Verification Checklist:
 - Painter App: Completed (Moved to AimsProject structure)

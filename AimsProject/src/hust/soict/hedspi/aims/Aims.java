@@ -157,7 +157,11 @@ public class Aims {
             System.out.println("Media not found with id " + id + ".");
             return;
         }
-        cart.addMedia(media);
+        try {
+            cart.addMedia(media);
+        } catch (LimitExceededException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     private static void playMedia(Scanner scanner, List<Media> mediaList) {
