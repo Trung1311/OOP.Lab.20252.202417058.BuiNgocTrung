@@ -3,7 +3,7 @@ package hust.soict.hedspi.aims.media;
 
 import java.util.Objects;
 
-public abstract class Media {
+public abstract class Media implements Comparable<Media> {
     private int id;
     private String title;
     private String category;
@@ -14,6 +14,14 @@ public abstract class Media {
         this.title = title;
         this.category = category;
         this.cost = cost;
+    }
+
+    @Override
+    public int compareTo(Media other) {
+        if (other == null) return 1;
+        int titleCompare = this.title.compareToIgnoreCase(other.title);
+        if (titleCompare != 0) return titleCompare;
+        return this.category.compareToIgnoreCase(other.category);
     }
 
     public int getId() {

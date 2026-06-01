@@ -2,6 +2,7 @@
 package hust.soict.hedspi.aims;
 
 import hust.soict.hedspi.aims.cart.Cart;
+import hust.soict.hedspi.aims.exception.PlayerException;
 import hust.soict.hedspi.aims.media.Book;
 import hust.soict.hedspi.aims.media.CompactDisc;
 import hust.soict.hedspi.aims.media.DigitalVideoDisc;
@@ -127,7 +128,11 @@ public class Aims {
                     return;
                 case 2:
                     if (media instanceof Playable) {
-                        ((Playable) media).play();
+                        try {
+                            ((Playable) media).play();
+                        } catch (PlayerException e) {
+                            System.err.println(e.getMessage());
+                        }
                     } else {
                         System.out.println("This media cannot be played.");
                     }
@@ -176,7 +181,11 @@ public class Aims {
             return;
         }
         if (media instanceof Playable) {
-            ((Playable) media).play();
+            try {
+                ((Playable) media).play();
+            } catch (PlayerException e) {
+                System.err.println(e.getMessage());
+            }
         } else {
             System.out.println("This media cannot be played.");
         }
@@ -378,7 +387,11 @@ public class Aims {
             return;
         }
         if (media instanceof Playable) {
-            ((Playable) media).play();
+            try {
+                ((Playable) media).play();
+            } catch (PlayerException e) {
+                System.err.println(e.getMessage());
+            }
         } else {
             System.out.println("This media cannot be played.");
         }

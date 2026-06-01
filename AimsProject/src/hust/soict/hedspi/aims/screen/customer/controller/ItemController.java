@@ -3,6 +3,9 @@ package hust.soict.hedspi.aims.screen.customer.controller;
 import hust.soict.hedspi.aims.cart.Cart;
 import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.media.Playable;
+import hust.soict.hedspi.aims.exception.PlayerException;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -56,7 +59,15 @@ public class ItemController {
     @FXML
     void btnPlayClicked(ActionEvent event) {
         if (media instanceof Playable) {
-            ((Playable) media).play();
+            try {
+                ((Playable) media).play();
+            } catch (PlayerException e) {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Player Error");
+                alert.setHeaderText("Could not play media");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+            }
         }
     }
 }
