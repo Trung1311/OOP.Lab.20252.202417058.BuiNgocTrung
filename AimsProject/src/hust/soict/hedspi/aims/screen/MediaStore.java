@@ -5,9 +5,11 @@ import hust.soict.hedspi.aims.cart.Cart;
 import hust.soict.hedspi.aims.media.Media;
 import hust.soict.hedspi.aims.media.Playable;
 
+import hust.soict.hedspi.aims.exception.PlayerException;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -39,8 +41,12 @@ public class MediaStore extends JPanel {
         JButton playButton = new JButton("Play");
         if (media instanceof Playable) {
             playButton.addActionListener(e -> {
-                parent.showPlayDialog(media);
-                ((Playable) media).play();
+                try {
+                    parent.showPlayDialog(media);
+                    ((Playable) media).play();
+                } catch (PlayerException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Player Error", JOptionPane.ERROR_MESSAGE);
+                }
             });
         } else {
             playButton.setEnabled(false);
