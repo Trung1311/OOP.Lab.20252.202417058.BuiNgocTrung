@@ -1,1 +1,15 @@
-D�y l� file tr? l?i c�u h?i Lab01 
+=== OOP Lab 05 Answers ===
+Student: Bui Ngoc Trung - 202417058
+
+Section 14: Exception Hierarchical Tree
+---------------------------------------
+java.lang.Object
+  └── java.lang.Throwable
+        └── java.lang.Exception
+              └── hust.soict.hedspi.aims.exception.PlayerException
+
+Verification Checklist:
+- Painter App: Completed (Moved to AimsProject structure)
+- Store & Cart GUI: Completed (FXML + Controllers)
+- Exception Handling: PlayerException implemented and thrown in play()
+- Project structure organized according to requirements.
