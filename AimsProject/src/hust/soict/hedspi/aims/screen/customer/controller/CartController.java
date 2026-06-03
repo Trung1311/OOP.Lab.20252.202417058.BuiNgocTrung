@@ -16,6 +16,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import hust.soict.hedspi.aims.exception.PlayerException;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -160,7 +163,15 @@ public class CartController {
     void btnPlayPressed(ActionEvent event) {
         Media media = tblMedia.getSelectionModel().getSelectedItem();
         if (media instanceof Playable) {
-            ((Playable) media).play();
+            try {
+                ((Playable) media).play();
+            } catch (PlayerException e) {
+                Alert alert = new Alert(AlertType.ERROR);
+                alert.setTitle("Player Error");
+                alert.setHeaderText("Could not play media");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+            }
         }
     }
 
@@ -179,6 +190,15 @@ public class CartController {
             fxmlLoader.setController(new ViewStoreController(store, cart));
             Parent root = fxmlLoader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Store");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+;
             stage.setScene(new Scene(root));
             stage.setTitle("Store");
             stage.show();

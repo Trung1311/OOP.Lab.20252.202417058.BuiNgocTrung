@@ -1,6 +1,7 @@
 // File path: AimsProject/src/hust/soict/hedspi/aims/cart/Cart.java
 package hust.soict.hedspi.aims.cart;
 
+import hust.soict.hedspi.aims.exception.LimitExceededException;
 import hust.soict.hedspi.aims.media.Media;
 
 import java.util.ArrayList;
@@ -9,12 +10,16 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Cart {
+    public static final int MAX_NUMBERS_ORDERED = 20;
     private List<Media> itemsOrdered = new ArrayList<>();
 
-    public void addMedia(Media media) {
+    public void addMedia(Media media) throws LimitExceededException {
         if (media == null) {
             System.out.println("Cannot add a null media item to the cart.");
             return;
+        }
+        if (itemsOrdered.size() >= MAX_NUMBERS_ORDERED) {
+            throw new LimitExceededException("ERROR: The number of media in the cart has reached the limit (" + MAX_NUMBERS_ORDERED + ")");
         }
         itemsOrdered.add(media);
         System.out.println("Added to cart: " + media.getTitle() + " (id=" + media.getId() + ")");
